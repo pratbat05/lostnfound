@@ -1,23 +1,35 @@
 import React, { useState } from 'react';
 import {
-  Search, Plus, MessageCircle, Clock, User, BookOpen, AlertCircle, CheckCircle, X
+  Search, Plus, MessageCircle, Clock, User, BookOpen, AlertCircle, CheckCircle, X, Heart, Star, Sparkles
 } from 'lucide-react';
 
-// Hero Section
+// Hero Section with enhanced girlie design
 const HeroSection = () => (
-  <section className="bg-gradient-to-r from-blue-50 to-blue-100 py-10 mb-8 rounded-lg shadow">
-    <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-6">
-      <div className="flex-1">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-800 mb-2 flex items-center gap-2">
-          <BookOpen className="h-8 w-8 text-blue-500" />
+  <section className="gradient-pastel py-16 mb-8 rounded-3xl shadow-cute relative overflow-hidden">
+    <div className="absolute top-4 right-4 text-2xl animate-float">🌸</div>
+    <div className="absolute bottom-4 left-4 text-2xl animate-float" style={{animationDelay: '1s'}}>💫</div>
+    <div className="absolute top-8 left-1/4 text-xl animate-pulse-cute">✨</div>
+    
+    <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
+      <div className="flex-1 text-center md:text-left">
+        <h2 className="text-4xl md:text-5xl font-bold text-purple-700 mb-4 flex items-center justify-center md:justify-start gap-3 font-cute">
+          <div className="p-3 bg-white/30 rounded-full shadow-cute">
+            <BookOpen className="h-10 w-10 text-green-500" />
+          </div>
           Welcome to College Hub
+          <Heart className="h-8 w-8 text-pink-400 animate-pulse-cute" />
         </h2>
-        <p className="text-lg text-blue-700">
-          Buy, sell, borrow, or lend books and tools. Report and track lost & found items. All in one place for your college community!
+        <p className="text-xl text-purple-600 leading-relaxed font-medium">
+          Your magical place to buy, sell, borrow & lend books and tools ✨ 
+          <br />Find your lost treasures and help others too! 💝
         </p>
       </div>
-      <div className="flex-shrink-0">
-        <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/book-2022464_1280.png" alt="Books and Tools" className="h-32 w-32 object-contain" />
+      <div className="flex-shrink-0 relative">
+        <div className="w-40 h-40 gradient-mint rounded-full flex items-center justify-center shadow-cute animate-float">
+          <div className="text-6xl">📚</div>
+        </div>
+        <div className="absolute -top-2 -right-2 text-2xl animate-pulse-cute">🌟</div>
+        <div className="absolute -bottom-2 -left-2 text-2xl animate-bounce">💖</div>
       </div>
     </div>
   </section>
@@ -36,11 +48,12 @@ const CollegeMarketplace = () => {
       type: "sell",
       price: 45,
       condition: "Good",
-      seller: "John D.",
-      contact: "john.doe@college.edu",
-      description: "Barely used, no highlighting. Great for engineering calculus.",
+      seller: "Emma D. 🌸",
+      contact: "emma.doe@college.edu",
+      description: "Barely used, no highlighting! Perfect for engineering calculus. Comes with cute sticky notes! 💕",
       datePosted: "2 days ago",
-      image: "📚"
+      image: "📚",
+      emoji: "✨"
     },
     {
       id: 2,
@@ -49,11 +62,12 @@ const CollegeMarketplace = () => {
       type: "lend",
       price: 15,
       condition: "Excellent",
-      seller: "Sarah M.",
+      seller: "Sarah M. 🦋",
       contact: "sarah.m@college.edu",
-      description: "Professional grade multimeter, perfect for electronics projects.",
+      description: "Professional grade multimeter, perfect for electronics projects! Lending with love 💝",
       datePosted: "1 day ago",
-      image: "🔧"
+      image: "🔧",
+      emoji: "⚡"
     },
     {
       id: 3,
@@ -62,44 +76,47 @@ const CollegeMarketplace = () => {
       type: "borrow",
       price: 0,
       condition: "Any",
-      seller: "Mike T.",
+      seller: "Mike T. 🌟",
       contact: "mike.t@college.edu",
-      description: "Need for final exam preparation, can return in 2 weeks.",
+      description: "Need for final exam prep! Will return with grateful heart in 2 weeks 🙏",
       datePosted: "3 hours ago",
-      image: "📖"
+      image: "📖",
+      emoji: "🎯"
     }
   ]);
+  
   const [lostFoundItems, setLostFoundItems] = useState([
     {
       id: 1,
-      title: "Black HP Laptop",
+      title: "Black HP Laptop with Cute Stickers 💻",
       type: "lost",
       location: "Engineering Building Room 205",
       dateReported: "2024-07-23",
-      reportedBy: "Alex P.",
+      reportedBy: "Alex P. 🌺",
       contact: "alex.p@college.edu",
-      description: "Black HP Pavilion laptop with engineering stickers",
+      description: "Black HP Pavilion laptop with engineering stickers and some cute anime decals! Has important project files 😭",
       status: "active",
       threads: [
-        { id: 1, author: "Alex P.", message: "Lost during morning lecture, has important project files", timestamp: "2 days ago" },
-        { id: 2, author: "Building Security", message: "Checked with janitor, no laptop found in room", timestamp: "1 day ago" }
+        { id: 1, author: "Alex P. 🌺", message: "Lost during morning lecture, has important project files and my heart is broken 💔", timestamp: "2 days ago" },
+        { id: 2, author: "Building Security 👮", message: "Checked with janitor, no laptop found in room. Will keep looking! 🔍", timestamp: "1 day ago" }
       ]
     },
     {
       id: 2,
-      title: "Red Scientific Calculator",
+      title: "Red Scientific Calculator 🧮",
       type: "found",
       location: "Library Study Room 3B",
       dateReported: "2024-07-24",
-      reportedBy: "Emma L.",
+      reportedBy: "Emma L. 🌸",
       contact: "emma.l@college.edu",
-      description: "TI-84 Plus CE in red case, found on desk",
+      description: "TI-84 Plus CE in red case, found on desk! It's safe with me 💕",
       status: "active",
       threads: [
-        { id: 1, author: "Emma L.", message: "Found this calculator, will keep it safe until claimed", timestamp: "1 day ago" }
+        { id: 1, author: "Emma L. 🌸", message: "Found this precious calculator! Will keep it safe until someone claims it 🥰", timestamp: "1 day ago" }
       ]
     }
   ]);
+  
   const [filters, setFilters] = useState({
     marketplace: { category: 'all', type: 'all', priceRange: 'all', condition: 'all' },
     lostfound: { type: 'all', status: 'all', location: 'all' }
@@ -107,7 +124,7 @@ const CollegeMarketplace = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [newThread, setNewThread] = useState('');
 
-  // Filtering logic
+  // Filtering logic (same as before)
   const filteredMarketplaceItems = marketplaceItems.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -127,6 +144,7 @@ const CollegeMarketplace = () => {
     }
     return matchesSearch && matchesCategory && matchesType && matchesCondition && matchesPrice;
   });
+  
   const filteredLostFoundItems = lostFoundItems.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -141,21 +159,23 @@ const CollegeMarketplace = () => {
       const newItem = {
         id: marketplaceItems.length + 1,
         ...formData,
-        seller: "Current User",
+        seller: "You 🌟",
         datePosted: "Just now",
-        image: formData.category === 'Books' ? '📚' : '🔧'
+        image: formData.category === 'Books' ? '📚' : '🔧',
+        emoji: formData.category === 'Books' ? '✨' : '⚡'
       };
       setMarketplaceItems([newItem, ...marketplaceItems]);
     } else {
       const newItem = {
         id: lostFoundItems.length + 1,
         ...formData,
-        reportedBy: "Current User",
+        title: formData.title + (formData.type === 'lost' ? ' 😢' : ' 😊'),
+        reportedBy: "You 🌟",
         dateReported: new Date().toISOString().split('T')[0],
         status: "active",
         threads: [{
           id: 1,
-          author: "Current User",
+          author: "You 🌟",
           message: formData.description,
           timestamp: "Just now"
         }]
@@ -174,7 +194,7 @@ const CollegeMarketplace = () => {
             ...item,
             threads: [...item.threads, {
               id: item.threads.length + 1,
-              author: "Current User",
+              author: "You 🌟",
               message: newThread,
               timestamp: "Just now"
             }]
@@ -187,7 +207,7 @@ const CollegeMarketplace = () => {
         ...selectedItem,
         threads: [...selectedItem.threads, {
           id: selectedItem.threads.length + 1,
-          author: "Current User",
+          author: "You 🌟",
           message: newThread,
           timestamp: "Just now"
         }]
@@ -203,93 +223,100 @@ const CollegeMarketplace = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{background: 'linear-gradient(135deg, #FFFBF7 0%, #F8FAFC 50%, #F3E8FF 100%)'}}>
       {/* Header */}
-      <header className="bg-white shadow-sm border-b sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+      <header className="glass-effect border-b-2 border-purple-200/30 sticky top-0 z-30 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-blue-700 tracking-tight flex items-center gap-2">
-              <BookOpen className="h-7 w-7 text-blue-500" /> College Hub
+            <h1 className="text-3xl font-bold text-purple-700 tracking-tight flex items-center gap-3 font-cute">
+              <div className="p-2 gradient-mint rounded-full shadow-cute">
+                <BookOpen className="h-8 w-8 text-green-600" />
+              </div>
+              College Hub
+              <Sparkles className="h-6 w-6 text-yellow-500 animate-pulse-cute" />
             </h1>
-            <div className="flex space-x-4">
+            <div className="flex space-x-2">
               <button
                 onClick={() => setActiveTab('marketplace')}
-                className={`px-4 py-2 rounded-lg font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 btn-cute relative ${
                   activeTab === 'marketplace'
-                    ? 'bg-blue-600 text-white shadow'
-                    : 'text-gray-600 hover:text-blue-700 hover:bg-blue-100'
+                    ? 'gradient-mint text-green-700 shadow-cute transform scale-105'
+                    : 'bg-white/50 text-purple-600 hover:bg-white/70 hover:scale-105 shadow-md'
                 }`}
-                aria-label="Marketplace Tab"
               >
-                Marketplace
+                Marketplace 🛍️
+                {activeTab === 'marketplace' && <div className="absolute -top-1 -right-1 text-lg">✨</div>}
               </button>
               <button
                 onClick={() => setActiveTab('lostfound')}
-                className={`px-4 py-2 rounded-lg font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 btn-cute relative ${
                   activeTab === 'lostfound'
-                    ? 'bg-blue-600 text-white shadow'
-                    : 'text-gray-600 hover:text-blue-700 hover:bg-blue-100'
+                    ? 'gradient-lavender text-purple-700 shadow-cute transform scale-105'
+                    : 'bg-white/50 text-purple-600 hover:bg-white/70 hover:scale-105 shadow-md'
                 }`}
-                aria-label="Lost and Found Tab"
               >
-                Lost & Found
+                Lost & Found 🔍
+                {activeTab === 'lostfound' && <div className="absolute -top-1 -right-1 text-lg">💫</div>}
               </button>
             </div>
           </div>
         </div>
       </header>
+      
       <HeroSection />
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Search and Filters */}
-        <div className="mb-6 bg-white rounded-lg shadow p-6">
-          <div className="flex flex-col lg:flex-row gap-4 items-center">
+        <div className="mb-8 glass-effect rounded-3xl shadow-cute p-8 border border-white/20">
+          <div className="flex flex-col lg:flex-row gap-6 items-center">
             {/* Search */}
-            <div className="flex-1 w-full">
+            <div className="flex-1 w-full relative">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-4 top-4 h-5 w-5 text-purple-400" />
                 <input
                   type="text"
-                  placeholder={`Search ${activeTab === 'marketplace' ? 'books and tools' : 'lost items'}...`}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder={`Search for ${activeTab === 'marketplace' ? 'books and tools' : 'lost treasures'}... ✨`}
+                  className="w-full pl-12 pr-4 py-4 border-2 border-purple-200/50 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 placeholder:text-purple-400 input-cute transition-all duration-300"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  aria-label="Search"
                 />
+                <div className="absolute right-4 top-4 text-purple-400">🔍</div>
               </div>
             </div>
+            
             {/* Filters */}
-            <div className="flex flex-wrap gap-2 items-center">
+            <div className="flex flex-wrap gap-3 items-center">
               {activeTab === 'marketplace' ? (
                 <>
-                  {/* Category Pills */}
                   <FilterPills
                     options={['all', 'Books', 'Tools']}
                     value={filters.marketplace.category}
                     onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, category: val } })}
                     label="Category"
+                    colors="gradient-mint"
                   />
-                  {/* Type Pills */}
                   <FilterPills
                     options={['all', 'sell', 'lend', 'borrow']}
                     value={filters.marketplace.type}
                     onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, type: val } })}
                     label="Type"
-                    displayMap={{ all: 'All Types', sell: 'For Sale', lend: 'For Lending', borrow: 'Want to Borrow' }}
+                    displayMap={{ all: 'All Types', sell: 'For Sale 💰', lend: 'For Lending 🤝', borrow: 'Want to Borrow 🙏' }}
+                    colors="gradient-lavender"
                   />
-                  {/* Price Pills */}
                   <FilterPills
                     options={['all', 'free', 'under25', '25to50', 'over50']}
                     value={filters.marketplace.priceRange}
                     onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, priceRange: val } })}
                     label="Price"
-                    displayMap={{ all: 'All Prices', free: 'Free', under25: 'Under $25', '25to50': '$25 - $50', over50: 'Over $50' }}
+                    displayMap={{ all: 'All Prices', free: 'Free 🎁', under25: 'Under $25', '25to50': '$25 - $50', over50: 'Over $50' }}
+                    colors="gradient-peach"
                   />
-                  {/* Condition Pills */}
                   <FilterPills
                     options={['all', 'Excellent', 'Good', 'Fair', 'Any']}
                     value={filters.marketplace.condition}
                     onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, condition: val } })}
                     label="Condition"
+                    colors="gradient-mint"
                   />
                 </>
               ) : (
@@ -299,35 +326,38 @@ const CollegeMarketplace = () => {
                     value={filters.lostfound.type}
                     onChange={val => setFilters({ ...filters, lostfound: { ...filters.lostfound, type: val } })}
                     label="Type"
-                    displayMap={{ all: 'All Items', lost: 'Lost Items', found: 'Found Items' }}
+                    displayMap={{ all: 'All Items', lost: 'Lost Items 😢', found: 'Found Items 😊' }}
+                    colors="gradient-lavender"
                   />
                   <FilterPills
                     options={['all', 'active', 'resolved']}
                     value={filters.lostfound.status}
                     onChange={val => setFilters({ ...filters, lostfound: { ...filters.lostfound, status: val } })}
                     label="Status"
+                    colors="gradient-mint"
                   />
                 </>
               )}
               <button
-                className="ml-2 px-3 py-1 rounded border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+                className="ml-3 px-4 py-2 rounded-xl border-2 border-purple-200 text-purple-600 hover:bg-purple-50 hover:border-purple-300 transition-all duration-300 font-medium"
                 onClick={resetFilters}
-                aria-label="Reset Filters"
               >
-                Reset
+                Reset ✨
               </button>
             </div>
+            
             {/* Add Button */}
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg hover:from-blue-700 hover:to-blue-600 flex items-center gap-2 shadow transition"
-              aria-label={`Add ${activeTab === 'marketplace' ? 'Item' : 'Report'}`}
+              className="px-6 py-4 bg-gradient-to-r from-purple-500 to-green-400 text-white rounded-2xl hover:from-purple-600 hover:to-green-500 flex items-center gap-3 shadow-cute hover:shadow-cute-hover transform hover:scale-105 transition-all duration-300 font-semibold btn-cute relative overflow-hidden"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="h-5 w-5" />
               Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
+              <Star className="h-4 w-4 animate-pulse-cute" />
             </button>
           </div>
         </div>
+        
         {/* Content */}
         {activeTab === 'marketplace' ? (
           <MarketplaceGrid items={filteredMarketplaceItems} />
@@ -341,6 +371,7 @@ const CollegeMarketplace = () => {
           />
         )}
       </div>
+      
       {/* Add Item Modal */}
       {showAddModal && (
         <AddItemModal
@@ -349,6 +380,7 @@ const CollegeMarketplace = () => {
           onSubmit={handleAddItem}
         />
       )}
+      
       {/* Thread Modal */}
       {showThreadModal && selectedItem && (
         <ThreadModal
@@ -363,79 +395,101 @@ const CollegeMarketplace = () => {
   );
 };
 
-// Filter Pills Component
-const FilterPills = ({ options, value, onChange, label, displayMap }) => (
-  <div className="flex gap-1 items-center">
-    <span className="text-xs text-gray-500 mr-1">{label}:</span>
+// Enhanced Filter Pills Component
+const FilterPills = ({ options, value, onChange, label, displayMap, colors = "gradient-mint" }) => (
+  <div className="flex gap-2 items-center flex-wrap">
+    <span className="text-sm text-purple-600 font-medium mr-2">{label}:</span>
     {options.map(opt => (
       <button
         key={opt}
-        className={`px-3 py-1 rounded-full border text-xs font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+        className={`px-4 py-2 rounded-full border-2 text-sm font-medium transition-all duration-300 btn-cute transform ${
           value === opt
-            ? 'bg-blue-600 text-white border-blue-600 shadow'
-            : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'
+            ? `${colors} text-purple-700 border-purple-300 shadow-cute scale-105`
+            : 'bg-white/60 text-purple-600 border-purple-200 hover:bg-white/80 hover:scale-105 hover:border-purple-300'
         }`}
         onClick={() => onChange(opt)}
-        aria-label={`${label} ${displayMap ? displayMap[opt] : opt}`}
       >
         {displayMap ? displayMap[opt] : opt.charAt(0).toUpperCase() + opt.slice(1)}
+        {value === opt && <span className="ml-1">✨</span>}
       </button>
     ))}
   </div>
 );
 
-// Marketplace Grid Component
+// Enhanced Marketplace Grid Component
 const MarketplaceGrid = ({ items }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {items.length === 0 && (
-      <div className="col-span-full text-center text-gray-400 py-12 text-lg">No items found.</div>
+      <div className="col-span-full text-center text-purple-400 py-16 text-xl">
+        <div className="text-6xl mb-4">🔍</div>
+        <div className="font-medium">No magical items found yet...</div>
+        <div className="text-sm mt-2">Try adjusting your filters! ✨</div>
+      </div>
     )}
     {items.map(item => (
       <div
         key={item.id}
-        className="bg-white rounded-xl shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-200 p-6 flex flex-col justify-between border border-transparent hover:border-blue-200"
+        className="glass-effect rounded-3xl shadow-cute hover:shadow-cute-hover card-cute p-8 flex flex-col justify-between border border-white/30 relative overflow-hidden group"
       >
-        <div className="flex items-start justify-between mb-4">
-          <div className="text-3xl select-none">{item.image}</div>
-          <div className={`px-2 py-1 text-xs rounded-full font-medium capitalize ${
-            item.type === 'sell' ? 'bg-green-100 text-green-800' :
-            item.type === 'lend' ? 'bg-blue-100 text-blue-800' :
-            'bg-orange-100 text-orange-800'
+        {/* Decorative elements */}
+        <div className="absolute top-4 right-4 text-lg opacity-70 group-hover:animate-pulse-cute">
+          {item.emoji}
+        </div>
+        
+        <div className="flex items-start justify-between mb-6">
+          <div className="text-4xl select-none p-3 bg-white/30 rounded-2xl shadow-md">
+            {item.image}
+          </div>
+          <div className={`px-3 py-2 text-xs rounded-full font-semibold capitalize border-2 ${
+            item.type === 'sell' ? 'bg-green-100/80 text-green-700 border-green-200' :
+            item.type === 'lend' ? 'bg-blue-100/80 text-blue-700 border-blue-200' :
+            'bg-orange-100/80 text-orange-700 border-orange-200'
           }`}>
-            {item.type === 'sell' ? 'For Sale' : item.type === 'lend' ? 'For Lending' : 'Want to Borrow'}
+            {item.type === 'sell' ? 'For Sale 💰' : item.type === 'lend' ? 'For Lending 🤝' : 'Want to Borrow 🙏'}
           </div>
         </div>
-        <h3 className="font-semibold text-gray-900 mb-2 text-lg">{item.title}</h3>
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{item.description}</p>
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-500">Category:</span>
-            <span className="font-medium">{item.category}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-500">Price:</span>
-            <span className="font-medium">
-              {item.price === 0 ? 'Free' : `$${item.price}`}
+        
+        <h3 className="font-bold text-purple-800 mb-3 text-xl leading-tight font-cute">
+          {item.title}
+        </h3>
+        <p className="text-purple-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+          {item.description}
+        </p>
+        
+        <div className="space-y-3 text-sm mb-6">
+          <div className="flex justify-between items-center p-2 bg-white/40 rounded-xl">
+            <span className="text-purple-500 font-medium">Category:</span>
+            <span className="font-semibold text-purple-700 emoji-decoration">
+              {item.category}
             </span>
           </div>
-          <div className="flex justify-between">
-            <span className="text-gray-500">Condition:</span>
-            <span className="font-medium">{item.condition}</span>
+          <div className="flex justify-between items-center p-2 bg-white/40 rounded-xl">
+            <span className="text-purple-500 font-medium">Price:</span>
+            <span className="font-bold text-green-600 text-lg">
+              {item.price === 0 ? 'Free 🎁' : `${item.price} 💝`}
+            </span>
+          </div>
+          <div className="flex justify-between items-center p-2 bg-white/40 rounded-xl">
+            <span className="text-purple-500 font-medium">Condition:</span>
+            <span className="font-semibold text-purple-700">{item.condition} ✨</span>
           </div>
         </div>
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-1">
-              <User className="h-4 w-4 text-gray-400" />
-              <span className="text-gray-600">{item.seller}</span>
+        
+        <div className="mt-auto pt-4 border-t-2 border-purple-200/50">
+          <div className="flex items-center justify-between text-sm mb-4">
+            <div className="flex items-center gap-2">
+              <div className="p-1 bg-purple-100 rounded-full">
+                <User className="h-4 w-4 text-purple-600" />
+              </div>
+              <span className="text-purple-600 font-medium">{item.seller}</span>
             </div>
-            <div className="flex items-center gap-1">
-              <Clock className="h-4 w-4 text-gray-400" />
-              <span className="text-gray-500">{item.datePosted}</span>
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-purple-400" />
+              <span className="text-purple-500 text-xs">{item.datePosted}</span>
             </div>
           </div>
-          <button className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium transition">
-            Contact Seller
+          <button className="w-full px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-400 text-white rounded-2xl hover:from-purple-600 hover:to-pink-500 text-sm font-bold transition-all duration-300 btn-cute shadow-md hover:shadow-lg transform hover:scale-105 relative overflow-hidden">
+            Contact Seller 💌
           </button>
         </div>
       </div>
@@ -443,69 +497,82 @@ const MarketplaceGrid = ({ items }) => (
   </div>
 );
 
-// Lost Found Grid Component
+// Enhanced Lost Found Grid Component
 const LostFoundGrid = ({ items, onViewThreads }) => (
-  <div className="space-y-4">
+  <div className="space-y-6">
     {items.length === 0 && (
-      <div className="text-center text-gray-400 py-12 text-lg">No lost or found items.</div>
+      <div className="text-center text-purple-400 py-16 text-xl">
+        <div className="text-6xl mb-4">🔍</div>
+        <div className="font-medium">No lost or found treasures yet...</div>
+        <div className="text-sm mt-2">Be the first to report something! ✨</div>
+      </div>
     )}
     {items.map(item => (
       <div
         key={item.id}
-        className="bg-white rounded-xl shadow hover:shadow-xl hover:-translate-y-1 transition-all duration-200 p-6 border border-transparent hover:border-blue-200"
+        className="glass-effect rounded-3xl shadow-cute hover:shadow-cute-hover card-cute p-8 border border-white/30 relative overflow-hidden group"
       >
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-full ${
-              item.type === 'lost' ? 'bg-red-100' : 'bg-green-100'
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <div className={`p-4 rounded-2xl shadow-md ${
+              item.type === 'lost' ? 'bg-red-100/80 border-2 border-red-200' : 'bg-green-100/80 border-2 border-green-200'
             }`}>
               {item.type === 'lost' ?
-                <AlertCircle className="h-5 w-5 text-red-600" /> :
-                <CheckCircle className="h-5 w-5 text-green-600" />
+                <AlertCircle className="h-6 w-6 text-red-600" /> :
+                <CheckCircle className="h-6 w-6 text-green-600" />
               }
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 text-lg">{item.title}</h3>
-              <p className="text-sm text-gray-500">
+              <h3 className="font-bold text-purple-800 text-xl mb-1 font-cute">{item.title}</h3>
+              <p className="text-sm text-purple-600 font-medium">
                 {item.type === 'lost' ? 'Lost' : 'Found'} by {item.reportedBy}
               </p>
             </div>
           </div>
           <div className="text-right">
-            <div className={`px-2 py-1 text-xs rounded-full font-medium capitalize ${
-              item.status === 'active' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'
+            <div className={`px-4 py-2 text-sm rounded-full font-bold capitalize border-2 ${
+              item.status === 'active' 
+                ? 'bg-yellow-100/80 text-yellow-700 border-yellow-200' 
+                : 'bg-gray-100/80 text-gray-700 border-gray-200'
             }`}>
-              {item.status}
+              {item.status} {item.status === 'active' ? '🔄' : '✅'}
             </div>
           </div>
         </div>
-        <p className="text-gray-600 mb-4 line-clamp-2">{item.description}</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mb-4">
-          <div>
-            <span className="text-gray-500">Location:</span>
-            <p className="font-medium">{item.location}</p>
+        
+        <p className="text-purple-600 mb-6 line-clamp-2 leading-relaxed text-base">
+          {item.description}
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mb-6">
+          <div className="p-3 bg-white/40 rounded-xl">
+            <span className="text-purple-500 font-medium block mb-1">Location:</span>
+            <p className="font-semibold text-purple-700">{item.location} 📍</p>
           </div>
-          <div>
-            <span className="text-gray-500">Date:</span>
-            <p className="font-medium">{item.dateReported}</p>
+          <div className="p-3 bg-white/40 rounded-xl">
+            <span className="text-purple-500 font-medium block mb-1">Date:</span>
+            <p className="font-semibold text-purple-700">{item.dateReported} 📅</p>
           </div>
-          <div>
-            <span className="text-gray-500">Contact:</span>
-            <p className="font-medium">{item.contact}</p>
+          <div className="p-3 bg-white/40 rounded-xl">
+            <span className="text-purple-500 font-medium block mb-1">Contact:</span>
+            <p className="font-semibold text-purple-700 text-xs">{item.contact} 📧</p>
           </div>
         </div>
-        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-          <div className="flex items-center gap-2">
-            <MessageCircle className="h-4 w-4 text-gray-400" />
-            <span className="text-sm text-gray-600">
-              {item.threads.length} update{item.threads.length !== 1 ? 's' : ''}
+        
+        <div className="flex items-center justify-between pt-4 border-t-2 border-purple-200/50">
+          <div className="flex items-center gap-3">
+            <div className="p-2 gradient-lavender rounded-full">
+              <MessageCircle className="h-4 w-4 text-purple-600" />
+            </div>
+            <span className="text-purple-600 font-medium">
+              {item.threads.length} update{item.threads.length !== 1 ? 's' : ''} 💬
             </span>
           </div>
           <button
             onClick={() => onViewThreads(item)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium transition"
+            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-400 text-white rounded-2xl hover:from-purple-600 hover:to-blue-500 text-sm font-bold transition-all duration-300 btn-cute shadow-md hover:shadow-lg transform hover:scale-105"
           >
-            View Updates
+            View Updates ✨
           </button>
         </div>
       </div>
@@ -513,7 +580,7 @@ const LostFoundGrid = ({ items, onViewThreads }) => (
   </div>
 );
 
-// Add Item Modal Component
+// Enhanced Add Item Modal Component
 const AddItemModal = ({ activeTab, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -525,6 +592,7 @@ const AddItemModal = ({ activeTab, onClose, onSubmit }) => {
     condition: 'Good',
     location: ''
   });
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({
@@ -532,97 +600,110 @@ const AddItemModal = ({ activeTab, onClose, onSubmit }) => {
       price: activeTab === 'marketplace' ? parseInt(formData.price) || 0 : 0
     });
   };
+  
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 transition-opacity duration-200">
-      <div className="bg-white rounded-lg max-w-md w-full p-6 animate-fadeIn shadow-xl">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">
+    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300">
+      <div className="glass-effect rounded-3xl max-w-lg w-full p-8 animate-bounceIn shadow-cute border border-white/30">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-purple-700 font-cute flex items-center gap-2">
             Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
+            <Star className="h-6 w-6 text-yellow-500 animate-pulse-cute" />
           </h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button 
+            onClick={onClose} 
+            className="text-purple-400 hover:text-purple-600 p-2 hover:bg-purple-100/50 rounded-full transition-all duration-300"
+          >
             <X className="h-6 w-6" />
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+            <label className="block text-sm font-bold text-purple-700 mb-2">Title ✨</label>
             <input
               type="text"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              placeholder="Give your item a cute name..."
             />
           </div>
+          
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <label className="block text-sm font-bold text-purple-700 mb-2">Description 💝</label>
             <textarea
               required
-              rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows={4}
+              className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300 resize-none"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              placeholder="Tell us more about it..."
             />
           </div>
+          
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Contact Email</label>
+            <label className="block text-sm font-bold text-purple-700 mb-2">Contact Email 📧</label>
             <input
               type="email"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
               value={formData.contact}
               onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+              placeholder="your.email@college.edu"
             />
           </div>
+          
           {activeTab === 'marketplace' ? (
             <>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                  <label className="block text-sm font-bold text-purple-700 mb-2">Category 📚</label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   >
-                    <option value="Books">Books</option>
-                    <option value="Tools">Tools</option>
+                    <option value="Books">Books 📚</option>
+                    <option value="Tools">Tools 🔧</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                  <label className="block text-sm font-bold text-purple-700 mb-2">Type 🏷️</label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                   >
-                    <option value="sell">For Sale</option>
-                    <option value="lend">For Lending</option>
-                    <option value="borrow">Want to Borrow</option>
+                    <option value="sell">For Sale 💰</option>
+                    <option value="lend">For Lending 🤝</option>
+                    <option value="borrow">Want to Borrow 🙏</option>
                   </select>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Price ($)</label>
+                  <label className="block text-sm font-bold text-purple-700 mb-2">Price ($) 💰</label>
                   <input
                     type="number"
                     min="0"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    placeholder="0 for free!"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Condition</label>
+                  <label className="block text-sm font-bold text-purple-700 mb-2">Condition ✨</label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
                     value={formData.condition}
                     onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
                   >
-                    <option value="Excellent">Excellent</option>
-                    <option value="Good">Good</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Any">Any</option>
+                    <option value="Excellent">Excellent ⭐</option>
+                    <option value="Good">Good 👍</option>
+                    <option value="Fair">Fair 👌</option>
+                    <option value="Any">Any 🤷</option>
                   </select>
                 </div>
               </div>
@@ -631,42 +712,44 @@ const AddItemModal = ({ activeTab, onClose, onSubmit }) => {
             <>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                  <label className="block text-sm font-bold text-purple-700 mb-2">Type 🔍</label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                   >
-                    <option value="lost">Lost Item</option>
-                    <option value="found">Found Item</option>
+                    <option value="lost">Lost Item 😢</option>
+                    <option value="found">Found Item 😊</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                  <label className="block text-sm font-bold text-purple-700 mb-2">Location 📍</label>
                   <input
                     type="text"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                    placeholder="Where did you lose/find it?"
                   />
                 </div>
               </div>
             </>
           )}
-          <div className="flex gap-3 pt-4">
+          
+          <div className="flex gap-4 pt-6">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              className="flex-1 px-6 py-3 border-2 border-purple-300 text-purple-600 rounded-2xl hover:bg-purple-50 hover:border-purple-400 font-semibold transition-all duration-300"
             >
-              Cancel
+              Cancel 💔
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-500 to-green-400 text-white rounded-2xl hover:from-purple-600 hover:to-green-500 font-bold transition-all duration-300 btn-cute shadow-md hover:shadow-lg transform hover:scale-105"
             >
-              Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
+              Add {activeTab === 'marketplace' ? 'Item' : 'Report'} ✨
             </button>
           </div>
         </form>
@@ -675,43 +758,51 @@ const AddItemModal = ({ activeTab, onClose, onSubmit }) => {
   );
 };
 
-// Thread Modal Component
+// Enhanced Thread Modal Component
 const ThreadModal = ({ item, onClose, newThread, setNewThread, onAddThread }) => (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 transition-opacity duration-200">
-    <div className="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-hidden animate-fadeIn shadow-xl">
-      <div className="flex items-center justify-between p-6 border-b">
-        <h2 className="text-xl font-semibold">{item.title} - Updates</h2>
-        <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
-          <X className="h-6 w-6" />
+  <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-opacity duration-300">
+    <div className="glass-effect rounded-3xl max-w-3xl w-full max-h-[85vh] overflow-hidden animate-bounceIn shadow-cute border border-white/30">
+      <div className="flex items-center justify-between p-8 border-b-2 border-purple-200/50">
+        <h2 className="text-2xl font-bold text-purple-700 font-cute flex items-center gap-2">
+          {item.title} - Updates
+          <MessageCircle className="h-6 w-6 text-purple-500 animate-pulse-cute" />
+        </h2>
+        <button 
+          onClick={onClose} 
+          className="text-purple-400 hover:text-purple-600 p-2 hover:bg-purple-100/50 rounded-full transition-all duration-300"
+        >
+          <X className="h-8 w-8" />
         </button>
       </div>
-      <div className="p-6 overflow-y-auto max-h-96">
-        <div className="space-y-4 mb-6">
+      
+      <div className="p-8 overflow-y-auto max-h-96">
+        <div className="space-y-4 mb-8">
           {item.threads.map(thread => (
-            <div key={thread.id} className="bg-gray-50 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-gray-900">{thread.author}</span>
-                <span className="text-sm text-gray-500">{thread.timestamp}</span>
+            <div key={thread.id} className="gradient-mint rounded-2xl p-6 shadow-md border border-green-200/50">
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-bold text-purple-700 text-lg">{thread.author}</span>
+                <span className="text-sm text-purple-500 font-medium">{thread.timestamp} ⏰</span>
               </div>
-              <p className="text-gray-700">{thread.message}</p>
+              <p className="text-purple-600 leading-relaxed font-medium">{thread.message}</p>
             </div>
           ))}
         </div>
       </div>
-      <div className="p-6 border-t">
-        <div className="flex gap-3">
+      
+      <div className="p-8 border-t-2 border-purple-200/50">
+        <div className="flex gap-4">
           <input
             type="text"
-            placeholder="Add an update..."
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Add a sweet update... 💕"
+            className="flex-1 px-4 py-3 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-400 focus:ring-4 focus:ring-purple-200/30 bg-white/70 font-medium text-purple-700 input-cute transition-all duration-300"
             value={newThread}
             onChange={(e) => setNewThread(e.target.value)}
           />
           <button
             onClick={onAddThread}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-400 text-white rounded-2xl hover:from-purple-600 hover:to-pink-500 font-bold transition-all duration-300 btn-cute shadow-md hover:shadow-lg transform hover:scale-105"
           >
-            Add Update
+            Add Update ✨
           </button>
         </div>
       </div>
@@ -720,7 +811,3 @@ const ThreadModal = ({ item, onClose, newThread, setNewThread, onAddThread }) =>
 );
 
 export default CollegeMarketplace;
-
-// Tailwind animation (add to your global CSS if not present)
-// @keyframes fadeIn { from { opacity: 0; transform: scale(0.95);} to { opacity: 1; transform: scale(1);} }
-// .animate-fadeIn { animation: fadeIn 0.2s ease; } 
