@@ -1,6 +1,7 @@
 {
   "name": "college-hub",
   "version": "1.0.0",
+  "description": "A comprehensive college marketplace and lost & found platform for students",
   "private": true,
   "dependencies": {
     "lucide-react": "^0.525.0",
