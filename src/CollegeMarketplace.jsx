@@ -4,142 +4,144 @@ import {
   Star, Heart, ShoppingBag, Users, Shield, Zap, Filter
 } from 'lucide-react';
 
-// Background Lines Component (simplified version of Aceternity UI)
-const BackgroundLines = ({ children, className = "" }) => (
-  <div className={`relative overflow-hidden ${className}`}>
-    <div className="absolute inset-0 opacity-20">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" className="text-neutral-200 dark:text-neutral-800"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
+// Utility function for class merging (from Aceternity UI)
+function cn(...inputs) {
+  // Simple implementation without external dependencies
+  return inputs.filter(Boolean).join(' ');
+}
+
+// Background Lines Component (Aceternity UI style)
+const BackgroundLines = ({ children, className, ...props }) => {
+  return (
+    <div
+      className={cn(
+        "h-screen w-full bg-white dark:bg-black dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center",
+        className
+      )}
+      {...props}
+    >
+      {/* Radial gradient for the container to give a faded look */}
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
+        {children}
+      </div>
     </div>
-    <div className="relative z-10">
-      {children}
-    </div>
-  </div>
-);
+  );
+};
 
 // Landing Page Component
 const LandingPage = ({ onEnterApp }) => (
-  <div className="min-h-screen bg-white dark:bg-neutral-950">
-    {/* Hero Section */}
-    <BackgroundLines className="flex items-center justify-center w-full flex-col px-4 py-20">
-      <div className="text-center max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full px-4 py-2 mb-8">
-          <Star className="h-4 w-4 text-blue-600" />
-          <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Welcome to College Hub</span>
-        </div>
-        
-        <h1 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-4xl md:text-6xl lg:text-7xl font-sans py-2 md:py-6 relative z-20 font-bold tracking-tight">
-          Your Campus <br /> Marketplace
-        </h1>
-        
-        <p className="max-w-2xl mx-auto text-lg md:text-xl text-neutral-700 dark:text-neutral-400 text-center mb-12 leading-relaxed">
-          Buy, sell, lend, and find lost items within your college community. 
-          Connect with fellow students in a safe and trusted environment.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <button 
-            onClick={onEnterApp}
-            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 justify-center"
-          >
-            <ShoppingBag className="h-5 w-5" />
-            Enter Marketplace
-          </button>
-          <button className="px-8 py-4 bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-900 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 justify-center">
-            <BookOpen className="h-5 w-5" />
-            Learn More
-          </button>
-        </div>
-        
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 text-center">
-            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <BookOpen className="h-6 w-6 text-blue-600" />
-            </div>
-            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Textbooks</h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">Find affordable textbooks from seniors</p>
-          </div>
-          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 text-center">
-            <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Search className="h-6 w-6 text-green-600" />
-            </div>
-            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Lost & Found</h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">Recover your lost belongings</p>
-          </div>
-          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 text-center">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Users className="h-6 w-6 text-purple-600" />
-            </div>
-            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Community</h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">Connect with fellow students</p>
-          </div>
-        </div>
+  <div className="min-h-screen bg-white">
+    {/* Hero Section with Aceternity UI BackgroundLines */}
+    <BackgroundLines className="flex items-center justify-center w-full flex-col px-4">
+      <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
+        College Hub, <br /> Your Campus Marketplace.
+      </h2>
+      <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center mb-8">
+        Buy, sell, lend, and find lost items within your college community. 
+        Connect with fellow students in a safe and trusted environment.
+      </p>
+      
+      <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 relative z-20">
+        <button 
+          onClick={onEnterApp}
+          className="px-8 py-4 bg-black dark:bg-white dark:text-black text-white rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 justify-center"
+        >
+          <ShoppingBag className="h-5 w-5" />
+          Enter Marketplace
+        </button>
+        <button className="px-8 py-4 bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 justify-center">
+          <BookOpen className="h-5 w-5" />
+          Learn More
+        </button>
       </div>
     </BackgroundLines>
     
+    {/* Feature Cards Section */}
+    <div className="py-20 bg-white">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <BookOpen className="h-6 w-6 text-blue-600" />
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Textbooks</h3>
+            <p className="text-sm text-gray-600">Find affordable textbooks from seniors</p>
+          </div>
+          <div className="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Search className="h-6 w-6 text-green-600" />
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Lost & Found</h3>
+            <p className="text-sm text-gray-600">Recover your lost belongings</p>
+          </div>
+          <div className="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Users className="h-6 w-6 text-purple-600" />
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Community</h3>
+            <p className="text-sm text-gray-600">Connect with fellow students</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     {/* Features Section */}
-    <section className="py-20 bg-neutral-50 dark:bg-neutral-900">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Why Choose College Hub?
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Built specifically for college students, by college students. Safe, simple, and trusted.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-6">
               <Shield className="h-8 w-8 text-blue-600" />
             </div>
-            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Safe & Secure</h3>
-            <p className="text-neutral-600 dark:text-neutral-400">College email verification ensures you're only dealing with fellow students</p>
+            <h3 className="font-semibold text-lg text-gray-900 mb-3">Safe & Secure</h3>
+            <p className="text-gray-600">College email verification ensures you're only dealing with fellow students</p>
           </div>
           
           <div className="text-center">
-            <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-6">
               <Zap className="h-8 w-8 text-green-600" />
             </div>
-            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Quick & Easy</h3>
-            <p className="text-neutral-600 dark:text-neutral-400">Post items in seconds and connect with buyers instantly</p>
+            <h3 className="font-semibold text-lg text-gray-900 mb-3">Quick & Easy</h3>
+            <p className="text-gray-600">Post items in seconds and connect with buyers instantly</p>
           </div>
           
           <div className="text-center">
-            <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-6">
               <Users className="h-8 w-8 text-purple-600" />
             </div>
-            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Campus Community</h3>
-            <p className="text-neutral-600 dark:text-neutral-400">Build connections and help your fellow students</p>
+            <h3 className="font-semibold text-lg text-gray-900 mb-3">Campus Community</h3>
+            <p className="text-gray-600">Build connections and help your fellow students</p>
           </div>
           
           <div className="text-center">
-            <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-6">
               <Heart className="h-8 w-8 text-orange-600" />
             </div>
-            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Student Friendly</h3>
-            <p className="text-neutral-600 dark:text-neutral-400">No fees, no hassle - just students helping students</p>
+            <h3 className="font-semibold text-lg text-gray-900 mb-3">Student Friendly</h3>
+            <p className="text-gray-600">No fees, no hassle - just students helping students</p>
           </div>
         </div>
       </div>
     </section>
     
     {/* CTA Section */}
-    <section className="py-20 bg-white dark:bg-neutral-950">
+    <section className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <div className="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-12">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Ready to Get Started?
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
+          <p className="text-lg text-gray-600 mb-8">
             Join hundreds of students already using College Hub to buy, sell, and connect.
           </p>
           <button 
@@ -152,6 +154,395 @@ const LandingPage = ({ onEnterApp }) => (
         </div>
       </div>
     </section>
+  </div>
+);
+
+// Filter Select Component
+const FilterSelect = ({ label, options, value, onChange }) => (
+  <div className="flex flex-col gap-1">
+    <label className="text-xs font-medium text-gray-500">{label}</label>
+    <select
+      className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </div>
+);
+
+// Marketplace Grid Component
+const MarketplaceGrid = ({ items }) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {items.length === 0 && (
+      <div className="col-span-full text-center py-16 text-gray-500">
+        <div className="text-6xl mb-4">🔍</div>
+        <div className="text-xl font-medium">No items found</div>
+        <div className="text-sm mt-2">Try adjusting your filters</div>
+      </div>
+    )}
+    {items.map(item => (
+      <div key={item.id} className="bg-white rounded-xl p-6 border border-gray-200 hover:border-gray-300 transition-colors shadow-sm">
+        <div className="flex items-start justify-between mb-4">
+          <div className="text-3xl">{item.image}</div>
+          <div className={`px-3 py-1 text-xs rounded-full font-medium ${
+            item.type === 'sell' ? 'bg-green-100 text-green-700' :
+            item.type === 'lend' ? 'bg-blue-100 text-blue-700' :
+            'bg-orange-100 text-orange-700'
+          }`}>
+            {item.type === 'sell' ? 'For Sale' : item.type === 'lend' ? 'For Lending' : 'Want to Borrow'}
+          </div>
+        </div>
+        
+        <h3 className="font-semibold text-lg text-gray-900 mb-3">
+          {item.title}
+        </h3>
+        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+          {item.description}
+        </p>
+        
+        <div className="space-y-2 text-sm mb-6">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-500">Category:</span>
+            <span className="font-medium text-gray-900">{item.category}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-500">Price:</span>
+            <span className="font-semibold text-green-600">
+              {item.price === 0 ? 'Free' : `$${item.price}`}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-500">Condition:</span>
+            <span className="font-medium text-gray-900">{item.condition}</span>
+          </div>
+        </div>
+        
+        <div className="mt-auto pt-4 border-t border-gray-200">
+          <div className="flex items-center justify-between text-sm mb-4">
+            <div className="flex items-center gap-2">
+              <User className="h-4 w-4 text-gray-400" />
+              <span className="text-gray-600">{item.seller}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-gray-400" />
+              <span className="text-gray-500">{item.datePosted}</span>
+            </div>
+          </div>
+          <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+            Contact Seller
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+// Lost Found Grid Component
+const LostFoundGrid = ({ items, onViewThreads }) => (
+  <div className="space-y-6">
+    {items.length === 0 && (
+      <div className="text-center py-16 text-gray-500">
+        <div className="text-6xl mb-4">🔍</div>
+        <div className="text-xl font-medium">No items found</div>
+        <div className="text-sm mt-2">Try adjusting your filters</div>
+      </div>
+    )}
+    {items.map(item => (
+      <div key={item.id} className="bg-white rounded-xl p-6 border border-gray-200 hover:border-gray-300 transition-colors shadow-sm">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex items-center gap-4">
+            <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+              item.type === 'lost' ? 'bg-red-100' : 'bg-green-100'
+            }`}>
+              {item.type === 'lost' ?
+                <AlertCircle className="h-6 w-6 text-red-600" /> :
+                <CheckCircle className="h-6 w-6 text-green-600" />
+              }
+            </div>
+            <div>
+              <h3 className="font-semibold text-xl text-gray-900 mb-1">{item.title}</h3>
+              <p className="text-sm text-gray-600">
+                {item.type === 'lost' ? 'Lost' : 'Found'} by {item.reportedBy}
+              </p>
+            </div>
+          </div>
+          <div className={`px-3 py-1 text-xs rounded-full font-medium ${
+            item.status === 'active' ? 
+              'bg-yellow-100 text-yellow-700' :
+              'bg-gray-100 text-gray-700'
+          }`}>
+            {item.status}
+          </div>
+        </div>
+        
+        <p className="mb-6 text-gray-700">
+          {item.description}
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mb-6">
+          <div className="p-3 rounded-lg bg-gray-50">
+            <span className="font-medium block mb-1 text-gray-500">Location:</span>
+            <p className="font-semibold text-gray-900">{item.location}</p>
+          </div>
+          <div className="p-3 rounded-lg bg-gray-50">
+            <span className="font-medium block mb-1 text-gray-500">Date:</span>
+            <p className="font-semibold text-gray-900">{item.dateReported}</p>
+          </div>
+          <div className="p-3 rounded-lg bg-gray-50">
+            <span className="font-medium block mb-1 text-gray-500">Contact:</span>
+            <p className="font-semibold text-xs text-gray-900">{item.contact}</p>
+          </div>
+        </div>
+        
+        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+          <div className="flex items-center gap-3">
+            <MessageCircle className="h-4 w-4 text-gray-400" />
+            <span className="text-gray-600">
+              {item.threads.length} update{item.threads.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+          <button
+            onClick={() => onViewThreads(item)}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          >
+            View Updates
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+// Add Item Modal Component
+const AddItemModal = ({ activeTab, onClose, onSubmit }) => {
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    contact: '',
+    category: activeTab === 'marketplace' ? 'Books' : '',
+    type: activeTab === 'marketplace' ? 'sell' : 'lost',
+    price: '',
+    condition: 'Good',
+    location: ''
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({
+      ...formData,
+      price: activeTab === 'marketplace' ? parseInt(formData.price) || 0 : 0
+    });
+  };
+  
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="max-w-lg w-full p-6 bg-white rounded-xl border border-gray-200 shadow-xl">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">
+            Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
+          </h2>
+          <button 
+            onClick={onClose} 
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="h-6 w-6 text-gray-500" />
+          </button>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+            <input
+              type="text"
+              required
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.title}
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              placeholder="Enter item title..."
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+            <textarea
+              required
+              rows={4}
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              placeholder="Describe your item..."
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Contact Email</label>
+            <input
+              type="email"
+              required
+              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.contact}
+              onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+              placeholder="your.email@college.edu"
+            />
+          </div>
+          
+          {activeTab === 'marketplace' ? (
+            <>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <select
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  >
+                    <option value="Books">Books</option>
+                    <option value="Tools">Tools</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Type</label>
+                  <select
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formData.type}
+                    onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                  >
+                    <option value="sell">For Sale</option>
+                    <option value="lend">For Lending</option>
+                    <option value="borrow">Want to Borrow</option>
+                  </select>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Price ($)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formData.price}
+                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    placeholder="0 for free"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Condition</label>
+                  <select
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formData.condition}
+                    onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
+                  >
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Any">Any</option>
+                  </select>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Type</label>
+                  <select
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formData.type}
+                    onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                  >
+                    <option value="lost">Lost Item</option>
+                    <option value="found">Found Item</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                    placeholder="Where was it lost/found?"
+                  />
+                </div>
+              </div>
+            </>
+          )}
+          
+          <div className="flex gap-3 pt-4">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+            >
+              Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// Thread Modal Component
+const ThreadModal = ({ item, onClose, newThread, setNewThread, onAddThread }) => (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="max-w-3xl w-full max-h-[85vh] overflow-hidden bg-white rounded-xl border border-gray-200 shadow-xl">
+      <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <h2 className="text-2xl font-bold text-gray-900">
+          {item.title} - Updates
+        </h2>
+        <button 
+          onClick={onClose} 
+          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        >
+          <X className="h-6 w-6 text-gray-500" />
+        </button>
+      </div>
+      
+      <div className="p-6 overflow-y-auto max-h-96">
+        <div className="space-y-4 mb-6">
+          {item.threads.map(thread => (
+            <div key={thread.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-medium text-gray-900">{thread.author}</span>
+                <span className="text-sm text-gray-500">{thread.timestamp}</span>
+              </div>
+              <p className="text-gray-700">{thread.message}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="p-6 border-t border-gray-200">
+        <div className="flex gap-3">
+          <input
+            type="text"
+            placeholder="Add an update..."
+            className="flex-1 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={newThread}
+            onChange={(e) => setNewThread(e.target.value)}
+          />
+          <button
+            onClick={onAddThread}
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          >
+            Add Update
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 );
 
@@ -346,16 +737,16 @@ const CollegeMarketplace = () => {
   });
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-200 dark:border-neutral-800">
+      <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-lg border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                 <BookOpen className="h-6 w-6 text-blue-600" />
               </div>
-              <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+              <h1 className="text-2xl font-bold text-gray-900">
                 College Hub
               </h1>
             </div>
@@ -366,7 +757,7 @@ const CollegeMarketplace = () => {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'marketplace'
                     ? 'bg-blue-600 text-white'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 Marketplace
@@ -376,7 +767,7 @@ const CollegeMarketplace = () => {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'lostfound'
                     ? 'bg-blue-600 text-white'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 Lost & Found
@@ -388,15 +779,15 @@ const CollegeMarketplace = () => {
       
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Search and Filters */}
-        <div className="mb-8 bg-white dark:bg-neutral-900 rounded-xl p-6 border border-neutral-200 dark:border-neutral-800">
+        <div className="mb-8 bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
           <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center">
             {/* Search */}
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-neutral-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="text"
                 placeholder={`Search ${activeTab === 'marketplace' ? 'marketplace items' : 'lost & found items'}...`}
-                className="w-full pl-10 pr-4 py-3 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -405,7 +796,7 @@ const CollegeMarketplace = () => {
             {/* Filter Toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
+              className="px-4 py-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2"
             >
               <Filter className="h-4 w-4" />
               Filters
@@ -423,7 +814,7 @@ const CollegeMarketplace = () => {
           
           {/* Expandable Filters */}
           {showFilters && (
-            <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="flex flex-wrap gap-4">
                 {activeTab === 'marketplace' ? (
                   <>
@@ -499,7 +890,7 @@ const CollegeMarketplace = () => {
                 )}
                 <button
                   onClick={resetFilters}
-                  className="px-4 py-2 text-sm bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+                  className="px-4 py-2 text-sm bg-gray-100 border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors"
                 >
                   Reset
                 </button>
@@ -545,42 +936,4 @@ const CollegeMarketplace = () => {
   );
 };
 
-// Filter Select Component
-const FilterSelect = ({ label, options, value, onChange }) => (
-  <div className="flex flex-col gap-1">
-    <label className="text-xs font-medium text-neutral-500 dark:text-neutral-400">{label}</label>
-    <select
-      className="px-3 py-2 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {options.map(option => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
-  </div>
-);
-
-// Marketplace Grid Component
-const MarketplaceGrid = ({ items }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {items.length === 0 && (
-      <div className="col-span-full text-center py-16 text-neutral-500 dark:text-neutral-400">
-        <div className="text-6xl mb-4">🔍</div>
-        <div className="text-xl font-medium">No items found</div>
-        <div className="text-sm mt-2">Try adjusting your filters</div>
-      </div>
-    )}
-    {items.map(item => (
-      <div key={item.id} className="bg-white dark:bg-neutral-900 rounded-xl p-6 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
-        <div className="flex items-start justify-between mb-4">
-          <div className="text-3xl">{item.image}</div>
-          <div className={`px-3 py-1 text-xs rounded-full font-medium ${
-            item.type === 'sell' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
-            item.type === 'lend' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
-            'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400'
-          }`}>
-            {item.type === 'sell' ? 'For Sale' : item.type === 'lend' ? 'For Lending' : 'Want to Borrow'}
-          </div>
+export default CollegeMarketplace;
