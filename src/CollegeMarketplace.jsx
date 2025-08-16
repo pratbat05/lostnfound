@@ -12,16 +12,21 @@ function cn(...inputs) {
 
 // Background Lines Component (Aceternity UI style)
 // Background Lines Component (Aceternity UI style)
+// Background Lines Component (Aceternity UI style)
 const BackgroundLines = ({ children, className, ...props }) => {
   return (
     <div
       className={cn(
-        "h-screen w-full bg-white relative flex items-center justify-center",
+        "h-screen w-full relative flex items-center justify-center",
         className
       )}
       style={{
-        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(0 0 0 / 0.1)'%3e%3cpath d='m0 .5h32m-32 32v-32'/%3e%3c/svg%3e")`,
-        backgroundSize: '32px 32px'
+        backgroundColor: '#ffffff',
+        backgroundImage: `
+          linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '40px 40px'
       }}
       {...props}
     >
@@ -29,7 +34,7 @@ const BackgroundLines = ({ children, className, ...props }) => {
       <div 
         className="absolute pointer-events-none inset-0"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 20%, rgba(255,255,255,0.8) 70%)'
+          background: 'radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.7) 70%)'
         }}
       ></div>
       <div className="relative z-20 text-center">
@@ -38,7 +43,6 @@ const BackgroundLines = ({ children, className, ...props }) => {
     </div>
   );
 };
-
 // Landing Page Component
 const LandingPage = ({ onEnterApp }) => (
   <div className="min-h-screen bg-white">
