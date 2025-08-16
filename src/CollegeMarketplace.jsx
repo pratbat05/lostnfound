@@ -11,18 +11,28 @@ function cn(...inputs) {
 }
 
 // Background Lines Component (Aceternity UI style)
+// Background Lines Component (Aceternity UI style)
 const BackgroundLines = ({ children, className, ...props }) => {
   return (
     <div
       className={cn(
-        "h-screen w-full bg-white dark:bg-black dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center",
+        "h-screen w-full bg-white relative flex items-center justify-center",
         className
       )}
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(0 0 0 / 0.1)'%3e%3cpath d='m0 .5h32m-32 32v-32'/%3e%3c/svg%3e")`,
+        backgroundSize: '32px 32px'
+      }}
       {...props}
     >
-      {/* Radial gradient for the container to give a faded look */}
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-white dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <div className="relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
+      {/* Radial gradient overlay for the faded look */}
+      <div 
+        className="absolute pointer-events-none inset-0"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 20%, rgba(255,255,255,0.8) 70%)'
+        }}
+      ></div>
+      <div className="relative z-20 text-center">
         {children}
       </div>
     </div>
