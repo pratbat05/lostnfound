@@ -13,33 +13,148 @@ function cn(...inputs) {
 // Background Lines Component (Aceternity UI style)
 // Background Lines Component (Aceternity UI style)
 // Background Lines Component (Aceternity UI style)
+// Background Lines Component (Aceternity UI style)
 const BackgroundLines = ({ children, className, ...props }) => {
   return (
     <div
       className={cn(
-        "h-screen w-full relative flex items-center justify-center",
+        "h-screen w-full bg-black relative flex items-center justify-center overflow-hidden",
         className
       )}
-      style={{
-        backgroundColor: '#ffffff',
-        backgroundImage: `
-          linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '40px 40px'
-      }}
       {...props}
     >
-      {/* Radial gradient overlay for the faded look */}
-      <div 
-        className="absolute pointer-events-none inset-0"
-        style={{
-          background: 'radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.7) 70%)'
-        }}
-      ></div>
+      {/* Animated Background Lines */}
+      <div className="absolute inset-0">
+        {/* Line 1 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"
+          style={{
+            width: '200px',
+            top: '20%',
+            left: '10%',
+            animation: 'float1 8s ease-in-out infinite',
+            transform: 'rotate(45deg)'
+          }}
+        />
+        {/* Line 2 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"
+          style={{
+            width: '150px',
+            top: '60%',
+            right: '15%',
+            animation: 'float2 6s ease-in-out infinite',
+            transform: 'rotate(-30deg)'
+          }}
+        />
+        {/* Line 3 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent"
+          style={{
+            width: '180px',
+            top: '80%',
+            left: '20%',
+            animation: 'float3 7s ease-in-out infinite',
+            transform: 'rotate(60deg)'
+          }}
+        />
+        {/* Line 4 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-green-500 to-transparent"
+          style={{
+            width: '120px',
+            top: '40%',
+            left: '60%',
+            animation: 'float4 5s ease-in-out infinite',
+            transform: 'rotate(-45deg)'
+          }}
+        />
+        {/* Line 5 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-yellow-500 to-transparent"
+          style={{
+            width: '160px',
+            top: '10%',
+            right: '25%',
+            animation: 'float5 9s ease-in-out infinite',
+            transform: 'rotate(15deg)'
+          }}
+        />
+        {/* Line 6 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+          style={{
+            width: '140px',
+            top: '70%',
+            right: '40%',
+            animation: 'float6 6.5s ease-in-out infinite',
+            transform: 'rotate(-60deg)'
+          }}
+        />
+        {/* Line 7 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"
+          style={{
+            width: '100px',
+            top: '30%',
+            left: '5%',
+            animation: 'float7 4s ease-in-out infinite',
+            transform: 'rotate(30deg)'
+          }}
+        />
+        {/* Line 8 */}
+        <div 
+          className="absolute h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent"
+          style={{
+            width: '190px',
+            top: '85%',
+            right: '10%',
+            animation: 'float8 7.5s ease-in-out infinite',
+            transform: 'rotate(-15deg)'
+          }}
+        />
+      </div>
+
+      {/* Content */}
       <div className="relative z-20 text-center">
         {children}
       </div>
+
+      {/* Keyframes for animations */}
+      <style jsx>{`
+        @keyframes float1 {
+          0%, 100% { transform: rotate(45deg) translateY(0px) translateX(0px); opacity: 0.3; }
+          50% { transform: rotate(45deg) translateY(-20px) translateX(10px); opacity: 0.8; }
+        }
+        @keyframes float2 {
+          0%, 100% { transform: rotate(-30deg) translateY(0px) translateX(0px); opacity: 0.4; }
+          50% { transform: rotate(-30deg) translateY(15px) translateX(-15px); opacity: 0.7; }
+        }
+        @keyframes float3 {
+          0%, 100% { transform: rotate(60deg) translateY(0px) translateX(0px); opacity: 0.2; }
+          50% { transform: rotate(60deg) translateY(-25px) translateX(20px); opacity: 0.6; }
+        }
+        @keyframes float4 {
+          0%, 100% { transform: rotate(-45deg) translateY(0px) translateX(0px); opacity: 0.5; }
+          50% { transform: rotate(-45deg) translateY(10px) translateX(-10px); opacity: 0.9; }
+        }
+        @keyframes float5 {
+          0%, 100% { transform: rotate(15deg) translateY(0px) translateX(0px); opacity: 0.3; }
+          50% { transform: rotate(15deg) translateY(-15px) translateX(25px); opacity: 0.7; }
+        }
+        @keyframes float6 {
+          0%, 100% { transform: rotate(-60deg) translateY(0px) translateX(0px); opacity: 0.4; }
+          50% { transform: rotate(-60deg) translateY(20px) translateX(-5px); opacity: 0.8; }
+        }
+        @keyframes float7 {
+          0%, 100% { transform: rotate(30deg) translateY(0px) translateX(0px); opacity: 0.6; }
+          50% { transform: rotate(30deg) translateY(-10px) translateX(15px); opacity: 0.3; }
+        }
+        @keyframes float8 {
+          0%, 100% { transform: rotate(-15deg) translateY(0px) translateX(0px); opacity: 0.2; }
+          50% { transform: rotate(-15deg) translateY(-30px) translateX(-20px); opacity: 0.9; }
+        }
+      `}</style>
     </div>
   );
 };
