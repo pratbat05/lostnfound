@@ -1,146 +1,150 @@
 import React, { useState } from 'react';
 import {
   Search, Plus, MessageCircle, Clock, User, BookOpen, AlertCircle, CheckCircle, X, 
-  Star, Heart, ShoppingBag, Users, Shield, Zap
+  Star, Heart, ShoppingBag, Users, Shield, Zap, Filter
 } from 'lucide-react';
+
+// Background Lines Component (simplified version of Aceternity UI)
+const BackgroundLines = ({ children, className = "" }) => (
+  <div className={`relative overflow-hidden ${className}`}>
+    <div className="absolute inset-0 opacity-20">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" className="text-neutral-200 dark:text-neutral-800"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+    </div>
+    <div className="relative z-10">
+      {children}
+    </div>
+  </div>
+);
 
 // Landing Page Component
 const LandingPage = ({ onEnterApp }) => (
-  <div className="min-h-screen bg-white" style={{ backgroundColor: '#F9FAF9' }}>
+  <div className="min-h-screen bg-white dark:bg-neutral-950">
     {/* Hero Section */}
-    <section className="py-20" style={{ background: 'linear-gradient(135deg, #FEFEFE 0%, #E8F5E8 50%, #F9FAF9 100%)' }}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full px-6 py-2 mb-8" style={{ borderColor: '#E1EDE1' }}>
-            <Star className="h-4 w-4" style={{ color: '#6EE76E' }} />
-            <span className="text-sm font-medium" style={{ color: '#4A5D4C' }}>Welcome to College Hub</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight" style={{ color: '#2D3F2F', fontFamily: 'serif' }}>
-            Your Campus
-            <span className="block" style={{ color: '#6EE76E' }}>Marketplace</span>
-          </h1>
-          
-          <p className="text-xl max-w-2xl mx-auto mb-12 leading-relaxed" style={{ color: '#4A5D4C' }}>
-            Buy, sell, lend, and find lost items within your college community. 
-            Connect with fellow students in a safe and trusted environment.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={onEnterApp}
-              className="text-lg px-8 py-4 inline-flex items-center gap-3 text-white rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1"
-              style={{ 
-                background: 'linear-gradient(135deg, #6EE76E 0%, #4AE54A 100%)',
-                boxShadow: '0 4px 15px rgba(110, 231, 110, 0.3)'
-              }}
-            >
-              <ShoppingBag className="h-5 w-5" />
-              Enter Marketplace
-            </button>
-            <button className="text-lg px-8 py-4 inline-flex items-center gap-3 bg-white border-2 rounded-xl font-medium transition-all duration-300 hover:transform hover:-translate-y-1" style={{ color: '#2D3F2F', borderColor: '#E1EDE1' }}>
-              <BookOpen className="h-5 w-5" />
-              Learn More
-            </button>
-          </div>
+    <BackgroundLines className="flex items-center justify-center w-full flex-col px-4 py-20">
+      <div className="text-center max-w-4xl mx-auto">
+        <div className="inline-flex items-center gap-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full px-4 py-2 mb-8">
+          <Star className="h-4 w-4 text-blue-600" />
+          <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Welcome to College Hub</span>
         </div>
         
-        {/* Hero Features */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl p-8 border shadow-lg" style={{ borderColor: '#E1EDE1', boxShadow: '0 4px 20px rgba(110, 231, 110, 0.1)' }}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center p-6 rounded-xl" style={{ backgroundColor: '#E8F5E8' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-                  <BookOpen className="h-6 w-6" style={{ color: '#4AE54A' }} />
-                </div>
-                <h3 className="font-semibold mb-2" style={{ color: '#2D3F2F' }}>Textbooks</h3>
-                <p className="text-sm" style={{ color: '#6B7D6D' }}>Find affordable textbooks from seniors</p>
-              </div>
-              <div className="text-center p-6 rounded-xl" style={{ backgroundColor: '#E8F5E8' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-                  <Search className="h-6 w-6" style={{ color: '#4AE54A' }} />
-                </div>
-                <h3 className="font-semibold mb-2" style={{ color: '#2D3F2F' }}>Lost & Found</h3>
-                <p className="text-sm" style={{ color: '#6B7D6D' }}>Recover your lost belongings</p>
-              </div>
-              <div className="text-center p-6 rounded-xl" style={{ backgroundColor: '#E8F5E8' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-                  <Users className="h-6 w-6" style={{ color: '#4AE54A' }} />
-                </div>
-                <h3 className="font-semibold mb-2" style={{ color: '#2D3F2F' }}>Community</h3>
-                <p className="text-sm" style={{ color: '#6B7D6D' }}>Connect with fellow students</p>
-              </div>
+        <h1 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-4xl md:text-6xl lg:text-7xl font-sans py-2 md:py-6 relative z-20 font-bold tracking-tight">
+          Your Campus <br /> Marketplace
+        </h1>
+        
+        <p className="max-w-2xl mx-auto text-lg md:text-xl text-neutral-700 dark:text-neutral-400 text-center mb-12 leading-relaxed">
+          Buy, sell, lend, and find lost items within your college community. 
+          Connect with fellow students in a safe and trusted environment.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <button 
+            onClick={onEnterApp}
+            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 justify-center"
+          >
+            <ShoppingBag className="h-5 w-5" />
+            Enter Marketplace
+          </button>
+          <button className="px-8 py-4 bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-900 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 justify-center">
+            <BookOpen className="h-5 w-5" />
+            Learn More
+          </button>
+        </div>
+        
+        {/* Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 text-center">
+            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <BookOpen className="h-6 w-6 text-blue-600" />
             </div>
+            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Textbooks</h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">Find affordable textbooks from seniors</p>
+          </div>
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 text-center">
+            <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Search className="h-6 w-6 text-green-600" />
+            </div>
+            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Lost & Found</h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">Recover your lost belongings</p>
+          </div>
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 text-center">
+            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Users className="h-6 w-6 text-purple-600" />
+            </div>
+            <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Community</h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">Connect with fellow students</p>
           </div>
         </div>
       </div>
-    </section>
+    </BackgroundLines>
     
     {/* Features Section */}
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-20 bg-neutral-50 dark:bg-neutral-900">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-6" style={{ color: '#2D3F2F', fontFamily: 'serif' }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
             Why Choose College Hub?
           </h2>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#4A5D4C' }}>
+          <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
             Built specifically for college students, by college students. Safe, simple, and trusted.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-              <Shield className="h-6 w-6" style={{ color: '#4AE54A' }} />
+            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <Shield className="h-8 w-8 text-blue-600" />
             </div>
-            <h3 className="font-semibold text-lg mb-3" style={{ color: '#2D3F2F' }}>Safe & Secure</h3>
-            <p style={{ color: '#6B7D6D' }}>College email verification ensures you're only dealing with fellow students</p>
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Safe & Secure</h3>
+            <p className="text-neutral-600 dark:text-neutral-400">College email verification ensures you're only dealing with fellow students</p>
           </div>
           
           <div className="text-center">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-              <Zap className="h-6 w-6" style={{ color: '#4AE54A' }} />
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <Zap className="h-8 w-8 text-green-600" />
             </div>
-            <h3 className="font-semibold text-lg mb-3" style={{ color: '#2D3F2F' }}>Quick & Easy</h3>
-            <p style={{ color: '#6B7D6D' }}>Post items in seconds and connect with buyers instantly</p>
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Quick & Easy</h3>
+            <p className="text-neutral-600 dark:text-neutral-400">Post items in seconds and connect with buyers instantly</p>
           </div>
           
           <div className="text-center">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-              <Users className="h-6 w-6" style={{ color: '#4AE54A' }} />
+            <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <Users className="h-8 w-8 text-purple-600" />
             </div>
-            <h3 className="font-semibold text-lg mb-3" style={{ color: '#2D3F2F' }}>Campus Community</h3>
-            <p style={{ color: '#6B7D6D' }}>Build connections and help your fellow students</p>
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Campus Community</h3>
+            <p className="text-neutral-600 dark:text-neutral-400">Build connections and help your fellow students</p>
           </div>
           
           <div className="text-center">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-              <Heart className="h-6 w-6" style={{ color: '#4AE54A' }} />
+            <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <Heart className="h-8 w-8 text-orange-600" />
             </div>
-            <h3 className="font-semibold text-lg mb-3" style={{ color: '#2D3F2F' }}>Student Friendly</h3>
-            <p style={{ color: '#6B7D6D' }}>No fees, no hassle - just students helping students</p>
+            <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100 mb-3">Student Friendly</h3>
+            <p className="text-neutral-600 dark:text-neutral-400">No fees, no hassle - just students helping students</p>
           </div>
         </div>
       </div>
     </section>
     
     {/* CTA Section */}
-    <section className="py-20">
+    <section className="py-20 bg-white dark:bg-neutral-950">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <div className="bg-white rounded-2xl p-12 border shadow-lg" style={{ borderColor: '#E1EDE1', boxShadow: '0 4px 20px rgba(110, 231, 110, 0.1)' }}>
-          <h2 className="text-3xl font-bold mb-6" style={{ color: '#2D3F2F', fontFamily: 'serif' }}>
+        <div className="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-12">
+          <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
             Ready to Get Started?
           </h2>
-          <p className="text-lg mb-8" style={{ color: '#4A5D4C' }}>
+          <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
             Join hundreds of students already using College Hub to buy, sell, and connect.
           </p>
           <button 
             onClick={onEnterApp}
-            className="text-lg px-8 py-4 inline-flex items-center gap-3 text-white rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1"
-            style={{ 
-              background: 'linear-gradient(135deg, #6EE76E 0%, #4AE54A 100%)',
-              boxShadow: '0 4px 15px rgba(110, 231, 110, 0.3)'
-            }}
+            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 inline-flex items-center gap-2"
           >
             <ShoppingBag className="h-5 w-5" />
             Start Trading Now
@@ -158,6 +162,7 @@ const CollegeMarketplace = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showThreadModal, setShowThreadModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
   const [marketplaceItems, setMarketplaceItems] = useState([
     {
       id: 1,
@@ -341,20 +346,16 @@ const CollegeMarketplace = () => {
   });
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F9FAF9' }}>
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-white border-b" style={{ 
-        backgroundColor: 'rgba(254, 254, 254, 0.95)', 
-        backdropFilter: 'blur(20px)',
-        borderColor: '#E1EDE1'
-      }}>
+      <header className="sticky top-0 z-30 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-200 dark:border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#E8F5E8', border: '1px solid #E1EDE1' }}>
-                <BookOpen className="h-6 w-6" style={{ color: '#4AE54A' }} />
+              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                <BookOpen className="h-6 w-6 text-blue-600" />
               </div>
-              <h1 className="text-2xl font-bold" style={{ color: '#2D3F2F', fontFamily: 'serif' }}>
+              <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
                 College Hub
               </h1>
             </div>
@@ -362,29 +363,21 @@ const CollegeMarketplace = () => {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setActiveTab('marketplace')}
-                className={`px-6 py-2 rounded-xl font-semibold transition-all duration-300 ${
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'marketplace'
-                    ? 'text-white shadow-lg'
-                    : 'bg-white border-2 hover:transform hover:-translate-y-1'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
                 }`}
-                style={activeTab === 'marketplace' ? 
-                  { backgroundColor: '#6EE76E', boxShadow: '0 4px 20px rgba(110, 231, 110, 0.1)' } :
-                  { color: '#2D3F2F', borderColor: '#E1EDE1' }
-                }
               >
                 Marketplace
               </button>
               <button
                 onClick={() => setActiveTab('lostfound')}
-                className={`px-6 py-2 rounded-xl font-semibold transition-all duration-300 ${
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeTab === 'lostfound'
-                    ? 'text-white shadow-lg'
-                    : 'bg-white border-2 hover:transform hover:-translate-y-1'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
                 }`}
-                style={activeTab === 'lostfound' ? 
-                  { backgroundColor: '#6EE76E', boxShadow: '0 4px 20px rgba(110, 231, 110, 0.1)' } :
-                  { color: '#2D3F2F', borderColor: '#E1EDE1' }
-                }
               >
                 Lost & Found
               </button>
@@ -395,105 +388,124 @@ const CollegeMarketplace = () => {
       
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Search and Filters */}
-        <div className="mb-8 bg-white rounded-2xl p-8 border shadow-lg" style={{ borderColor: '#E1EDE1', boxShadow: '0 4px 20px rgba(110, 231, 110, 0.1)' }}>
-          <div className="flex flex-col lg:flex-row gap-6 items-center">
+        <div className="mb-8 bg-white dark:bg-neutral-900 rounded-xl p-6 border border-neutral-200 dark:border-neutral-800">
+          <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center">
             {/* Search */}
-            <div className="flex-1 w-full relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5" style={{ color: '#6B7D6D' }} />
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-neutral-400" />
               <input
                 type="text"
                 placeholder={`Search ${activeTab === 'marketplace' ? 'marketplace items' : 'lost & found items'}...`}
-                className="w-full pl-12 pr-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none focus:transform focus:scale-105"
-                style={{ 
-                  backgroundColor: '#FEFEFE',
-                  borderColor: '#E1EDE1',
-                  color: '#2D3F2F'
-                }}
+                className="w-full pl-10 pr-4 py-3 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#6EE76E';
-                  e.target.style.backgroundColor = 'white';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(110, 231, 110, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#E1EDE1';
-                  e.target.style.backgroundColor = '#FEFEFE';
-                  e.target.style.boxShadow = 'none';
-                }}
               />
             </div>
             
-            {/* Filters */}
-            <div className="flex flex-wrap gap-3 items-center">
-              {activeTab === 'marketplace' ? (
-                <>
-                  <FilterPills
-                    options={['all', 'Books', 'Tools']}
-                    value={filters.marketplace.category}
-                    onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, category: val } })}
-                    label="Category"
-                  />
-                  <FilterPills
-                    options={['all', 'sell', 'lend', 'borrow']}
-                    value={filters.marketplace.type}
-                    onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, type: val } })}
-                    label="Type"
-                    displayMap={{ all: 'All Types', sell: 'For Sale', lend: 'For Lending', borrow: 'Want to Borrow' }}
-                  />
-                  <FilterPills
-                    options={['all', 'free', 'under25', '25to50', 'over50']}
-                    value={filters.marketplace.priceRange}
-                    onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, priceRange: val } })}
-                    label="Price"
-                    displayMap={{ all: 'All Prices', free: 'Free', under25: 'Under $25', '25to50': '$25 - $50', over50: 'Over $50' }}
-                  />
-                  <FilterPills
-                    options={['all', 'Excellent', 'Good', 'Fair', 'Any']}
-                    value={filters.marketplace.condition}
-                    onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, condition: val } })}
-                    label="Condition"
-                  />
-                </>
-              ) : (
-                <>
-                  <FilterPills
-                    options={['all', 'lost', 'found']}
-                    value={filters.lostfound.type}
-                    onChange={val => setFilters({ ...filters, lostfound: { ...filters.lostfound, type: val } })}
-                    label="Type"
-                    displayMap={{ all: 'All Items', lost: 'Lost Items', found: 'Found Items' }}
-                  />
-                  <FilterPills
-                    options={['all', 'active', 'resolved']}
-                    value={filters.lostfound.status}
-                    onChange={val => setFilters({ ...filters, lostfound: { ...filters.lostfound, status: val } })}
-                    label="Status"
-                  />
-                </>
-              )}
-              <button
-                className="text-sm px-4 py-2 bg-white border-2 rounded-xl font-medium transition-all duration-300 hover:transform hover:-translate-y-1"
-                style={{ color: '#2D3F2F', borderColor: '#E1EDE1' }}
-                onClick={resetFilters}
-              >
-                Reset
-              </button>
-            </div>
+            {/* Filter Toggle */}
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
+            >
+              <Filter className="h-4 w-4" />
+              Filters
+            </button>
             
             {/* Add Button */}
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-6 py-3 flex items-center gap-2 whitespace-nowrap text-white rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1"
-              style={{ 
-                background: 'linear-gradient(135deg, #6EE76E 0%, #4AE54A 100%)',
-                boxShadow: '0 4px 15px rgba(110, 231, 110, 0.3)'
-              }}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2 whitespace-nowrap"
             >
               <Plus className="h-5 w-5" />
               Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
             </button>
           </div>
+          
+          {/* Expandable Filters */}
+          {showFilters && (
+            <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+              <div className="flex flex-wrap gap-4">
+                {activeTab === 'marketplace' ? (
+                  <>
+                    <FilterSelect
+                      label="Category"
+                      options={[
+                        { value: 'all', label: 'All Categories' },
+                        { value: 'Books', label: 'Books' },
+                        { value: 'Tools', label: 'Tools' }
+                      ]}
+                      value={filters.marketplace.category}
+                      onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, category: val } })}
+                    />
+                    <FilterSelect
+                      label="Type"
+                      options={[
+                        { value: 'all', label: 'All Types' },
+                        { value: 'sell', label: 'For Sale' },
+                        { value: 'lend', label: 'For Lending' },
+                        { value: 'borrow', label: 'Want to Borrow' }
+                      ]}
+                      value={filters.marketplace.type}
+                      onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, type: val } })}
+                    />
+                    <FilterSelect
+                      label="Price"
+                      options={[
+                        { value: 'all', label: 'All Prices' },
+                        { value: 'free', label: 'Free' },
+                        { value: 'under25', label: 'Under $25' },
+                        { value: '25to50', label: '$25 - $50' },
+                        { value: 'over50', label: 'Over $50' }
+                      ]}
+                      value={filters.marketplace.priceRange}
+                      onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, priceRange: val } })}
+                    />
+                    <FilterSelect
+                      label="Condition"
+                      options={[
+                        { value: 'all', label: 'All Conditions' },
+                        { value: 'Excellent', label: 'Excellent' },
+                        { value: 'Good', label: 'Good' },
+                        { value: 'Fair', label: 'Fair' },
+                        { value: 'Any', label: 'Any' }
+                      ]}
+                      value={filters.marketplace.condition}
+                      onChange={val => setFilters({ ...filters, marketplace: { ...filters.marketplace, condition: val } })}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <FilterSelect
+                      label="Type"
+                      options={[
+                        { value: 'all', label: 'All Items' },
+                        { value: 'lost', label: 'Lost Items' },
+                        { value: 'found', label: 'Found Items' }
+                      ]}
+                      value={filters.lostfound.type}
+                      onChange={val => setFilters({ ...filters, lostfound: { ...filters.lostfound, type: val } })}
+                    />
+                    <FilterSelect
+                      label="Status"
+                      options={[
+                        { value: 'all', label: 'All Status' },
+                        { value: 'active', label: 'Active' },
+                        { value: 'resolved', label: 'Resolved' }
+                      ]}
+                      value={filters.lostfound.status}
+                      onChange={val => setFilters({ ...filters, lostfound: { ...filters.lostfound, status: val } })}
+                    />
+                  </>
+                )}
+                <button
+                  onClick={resetFilters}
+                  className="px-4 py-2 text-sm bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         
         {/* Content */}
@@ -533,527 +545,42 @@ const CollegeMarketplace = () => {
   );
 };
 
-// Filter Pills Component
-const FilterPills = ({ options, value, onChange, label, displayMap }) => (
-  <div className="flex gap-2 items-center flex-wrap">
-    <span className="text-sm font-medium" style={{ color: '#4A5D4C' }}>{label}:</span>
-    {options.map(opt => (
-      <button
-        key={opt}
-        className={`px-4 py-2 rounded-full border-2 text-sm font-medium transition-all duration-300 ${
-          value === opt ? 'text-white' : 'bg-white hover:transform hover:scale-105'
-        }`}
-        style={value === opt ? 
-          { backgroundColor: '#6EE76E', borderColor: '#6EE76E' } :
-          { color: '#4A5D4C', borderColor: '#E1EDE1' }
-        }
-        onClick={() => onChange(opt)}
-      >
-        {displayMap ? displayMap[opt] : opt.charAt(0).toUpperCase() + opt.slice(1)}
-      </button>
-    ))}
+// Filter Select Component
+const FilterSelect = ({ label, options, value, onChange }) => (
+  <div className="flex flex-col gap-1">
+    <label className="text-xs font-medium text-neutral-500 dark:text-neutral-400">{label}</label>
+    <select
+      className="px-3 py-2 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
   </div>
 );
 
 // Marketplace Grid Component
 const MarketplaceGrid = ({ items }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {items.length === 0 && (
-      <div className="col-span-full text-center py-16" style={{ color: '#6B7D6D' }}>
+      <div className="col-span-full text-center py-16 text-neutral-500 dark:text-neutral-400">
         <div className="text-6xl mb-4">🔍</div>
         <div className="text-xl font-medium">No items found</div>
         <div className="text-sm mt-2">Try adjusting your filters</div>
       </div>
     )}
     {items.map(item => (
-      <div key={item.id} className="bg-white rounded-2xl p-6 flex flex-col justify-between border shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2" style={{ borderColor: '#E1EDE1', boxShadow: '0 4px 20px rgba(110, 231, 110, 0.1)' }}>
+      <div key={item.id} className="bg-white dark:bg-neutral-900 rounded-xl p-6 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
         <div className="flex items-start justify-between mb-4">
           <div className="text-3xl">{item.image}</div>
-          <div className="px-3 py-1 text-xs rounded-full font-semibold uppercase tracking-wide border" style={
-            item.type === 'sell' ? 
-              { backgroundColor: '#E8F8E8', color: '#2D5A2D', borderColor: '#B8E6B8' } :
-            item.type === 'lend' ? 
-              { backgroundColor: '#E8F4F8', color: '#2D4A5A', borderColor: '#B8D4E6' } :
-              { backgroundColor: '#F8F0E8', color: '#5A4A2D', borderColor: '#E6D4B8' }
-          }>
+          <div className={`px-3 py-1 text-xs rounded-full font-medium ${
+            item.type === 'sell' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
+            item.type === 'lend' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
+            'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400'
+          }`}>
             {item.type === 'sell' ? 'For Sale' : item.type === 'lend' ? 'For Lending' : 'Want to Borrow'}
           </div>
-        </div>
-        
-        <h3 className="font-semibold text-lg leading-tight mb-3" style={{ color: '#2D3F2F' }}>
-          {item.title}
-        </h3>
-        <p className="text-sm mb-4 leading-relaxed" style={{ color: '#4A5D4C' }}>
-          {item.description}
-        </p>
-        
-        <div className="space-y-3 text-sm mb-6">
-          <div className="flex justify-between items-center">
-            <span style={{ color: '#6B7D6D' }}>Category:</span>
-            <span className="font-medium" style={{ color: '#2D3F2F' }}>{item.category}</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span style={{ color: '#6B7D6D' }}>Price:</span>
-            <span className="font-semibold" style={{ color: '#4AE54A' }}>
-              {item.price === 0 ? 'Free' : `${item.price}`}
-            </span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span style={{ color: '#6B7D6D' }}>Condition:</span>
-            <span className="font-medium" style={{ color: '#2D3F2F' }}>{item.condition}</span>
-          </div>
-        </div>
-        
-        <div className="mt-auto pt-4 border-t" style={{ borderColor: '#E1EDE1' }}>
-          <div className="flex items-center justify-between text-sm mb-4">
-            <div className="flex items-center gap-2">
-              <User className="h-4 w-4" style={{ color: '#6B7D6D' }} />
-              <span className="font-medium" style={{ color: '#4A5D4C' }}>{item.seller}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" style={{ color: '#6B7D6D' }} />
-              <span className="text-xs" style={{ color: '#6B7D6D' }}>{item.datePosted}</span>
-            </div>
-          </div>
-          <button className="w-full py-3 text-white rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1" style={{ 
-            background: 'linear-gradient(135deg, #6EE76E 0%, #4AE54A 100%)',
-            boxShadow: '0 4px 15px rgba(110, 231, 110, 0.3)'
-          }}>
-            Contact Seller
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-);
-
-// Lost Found Grid Component
-const LostFoundGrid = ({ items, onViewThreads }) => (
-  <div className="space-y-6">
-    {items.length === 0 && (
-      <div className="text-center py-16" style={{ color: '#6B7D6D' }}>
-        <div className="text-6xl mb-4">🔍</div>
-        <div className="text-xl font-medium">No items found</div>
-        <div className="text-sm mt-2">Try adjusting your filters</div>
-      </div>
-    )}
-    {items.map(item => (
-      <div key={item.id} className="bg-white rounded-2xl p-6 border shadow-lg transition-all duration-300 hover:transform hover:-translate-y-1" style={{ borderColor: '#E1EDE1', boxShadow: '0 4px 20px rgba(110, 231, 110, 0.1)' }}>
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${
-              item.type === 'lost' ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'
-            }`}>
-              {item.type === 'lost' ?
-                <AlertCircle className="h-6 w-6 text-red-600" /> :
-                <CheckCircle className="h-6 w-6 text-green-600" />
-              }
-            </div>
-            <div>
-              <h3 className="font-semibold text-xl mb-1" style={{ color: '#2D3F2F' }}>{item.title}</h3>
-              <p className="text-sm font-medium" style={{ color: '#4A5D4C' }}>
-                {item.type === 'lost' ? 'Lost' : 'Found'} by {item.reportedBy}
-              </p>
-            </div>
-          </div>
-          <div className="px-3 py-1 text-xs rounded-full font-semibold uppercase tracking-wide border" style={
-            item.status === 'active' ? 
-              { backgroundColor: '#FFF8E8', color: '#5A522D', borderColor: '#E6DEB8' } :
-              { backgroundColor: '#F0F0F0', color: '#666666', borderColor: '#CCCCCC' }
-          }>
-            {item.status}
-          </div>
-        </div>
-        
-        <p className="mb-6 leading-relaxed" style={{ color: '#4A5D4C' }}>
-          {item.description}
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mb-6">
-          <div className="p-3 rounded-lg" style={{ backgroundColor: '#E8F5E8' }}>
-            <span className="font-medium block mb-1" style={{ color: '#6B7D6D' }}>Location:</span>
-            <p className="font-semibold" style={{ color: '#2D3F2F' }}>{item.location}</p>
-          </div>
-          <div className="p-3 rounded-lg" style={{ backgroundColor: '#E8F5E8' }}>
-            <span className="font-medium block mb-1" style={{ color: '#6B7D6D' }}>Date:</span>
-            <p className="font-semibold" style={{ color: '#2D3F2F' }}>{item.dateReported}</p>
-          </div>
-          <div className="p-3 rounded-lg" style={{ backgroundColor: '#E8F5E8' }}>
-            <span className="font-medium block mb-1" style={{ color: '#6B7D6D' }}>Contact:</span>
-            <p className="font-semibold text-xs" style={{ color: '#2D3F2F' }}>{item.contact}</p>
-          </div>
-        </div>
-        
-        <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: '#E1EDE1' }}>
-          <div className="flex items-center gap-3">
-            <MessageCircle className="h-4 w-4" style={{ color: '#6B7D6D' }} />
-            <span className="font-medium" style={{ color: '#4A5D4C' }}>
-              {item.threads.length} update{item.threads.length !== 1 ? 's' : ''}
-            </span>
-          </div>
-          <button
-            onClick={() => onViewThreads(item)}
-            className="px-6 py-2 text-white rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1"
-            style={{ 
-              background: 'linear-gradient(135deg, #6EE76E 0%, #4AE54A 100%)',
-              boxShadow: '0 4px 15px rgba(110, 231, 110, 0.3)'
-            }}
-          >
-            View Updates
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-);
-
-// Add Item Modal Component
-const AddItemModal = ({ activeTab, onClose, onSubmit }) => {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    contact: '',
-    category: activeTab === 'marketplace' ? 'Books' : '',
-    type: activeTab === 'marketplace' ? 'sell' : 'lost',
-    price: '',
-    condition: 'Good',
-    location: ''
-  });
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit({
-      ...formData,
-      price: activeTab === 'marketplace' ? parseInt(formData.price) || 0 : 0
-    });
-  };
-  
-  return (
-    <div className="fixed inset-0 flex items-center justify-center p-4 z-50" style={{ background: 'rgba(45, 63, 47, 0.4)', backdropFilter: 'blur(4px)' }}>
-      <div className="max-w-lg w-full p-8 bg-white rounded-2xl border shadow-xl" style={{ borderColor: '#E1EDE1', boxShadow: '0 20px 60px rgba(110, 231, 110, 0.15)' }}>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold" style={{ color: '#2D3F2F', fontFamily: 'serif' }}>
-            Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
-          </h2>
-          <button 
-            onClick={onClose} 
-            className="p-2 rounded-full transition-all duration-300 hover:transform hover:scale-110" 
-            style={{ color: '#6B7D6D', backgroundColor: '#E8F5E8' }}
-          >
-            <X className="h-6 w-6" />
-          </button>
-        </div>
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Title</label>
-            <input
-              type="text"
-              required
-              className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-              style={{ 
-                backgroundColor: '#FEFEFE',
-                borderColor: '#E1EDE1',
-                color: '#2D3F2F'
-              }}
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              placeholder="Enter item title..."
-              onFocus={(e) => {
-                e.target.style.borderColor = '#6EE76E';
-                e.target.style.backgroundColor = 'white';
-                e.target.style.boxShadow = '0 0 0 3px rgba(110, 231, 110, 0.1)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = '#E1EDE1';
-                e.target.style.backgroundColor = '#FEFEFE';
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Description</label>
-            <textarea
-              required
-              rows={4}
-              className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none resize-none"
-              style={{ 
-                backgroundColor: '#FEFEFE',
-                borderColor: '#E1EDE1',
-                color: '#2D3F2F'
-              }}
-              value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Describe your item..."
-              onFocus={(e) => {
-                e.target.style.borderColor = '#6EE76E';
-                e.target.style.backgroundColor = 'white';
-                e.target.style.boxShadow = '0 0 0 3px rgba(110, 231, 110, 0.1)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = '#E1EDE1';
-                e.target.style.backgroundColor = '#FEFEFE';
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Contact Email</label>
-            <input
-              type="email"
-              required
-              className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-              style={{ 
-                backgroundColor: '#FEFEFE',
-                borderColor: '#E1EDE1',
-                color: '#2D3F2F'
-              }}
-              value={formData.contact}
-              onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-              placeholder="your.email@college.edu"
-              onFocus={(e) => {
-                e.target.style.borderColor = '#6EE76E';
-                e.target.style.backgroundColor = 'white';
-                e.target.style.boxShadow = '0 0 0 3px rgba(110, 231, 110, 0.1)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = '#E1EDE1';
-                e.target.style.backgroundColor = '#FEFEFE';
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-          </div>
-          
-          {activeTab === 'marketplace' ? (
-            <>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Category</label>
-                  <select
-                    className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-                    style={{ 
-                      backgroundColor: '#FEFEFE',
-                      borderColor: '#E1EDE1',
-                      color: '#2D3F2F'
-                    }}
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  >
-                    <option value="Books">Books</option>
-                    <option value="Tools">Tools</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Type</label>
-                  <select
-                    className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-                    style={{ 
-                      backgroundColor: '#FEFEFE',
-                      borderColor: '#E1EDE1',
-                      color: '#2D3F2F'
-                    }}
-                    value={formData.type}
-                    onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                  >
-                    <option value="sell">For Sale</option>
-                    <option value="lend">For Lending</option>
-                    <option value="borrow">Want to Borrow</option>
-                  </select>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Price ($)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-                    style={{ 
-                      backgroundColor: '#FEFEFE',
-                      borderColor: '#E1EDE1',
-                      color: '#2D3F2F'
-                    }}
-                    value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    placeholder="0 for free"
-                    onFocus={(e) => {
-                      e.target.style.borderColor = '#6EE76E';
-                      e.target.style.backgroundColor = 'white';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(110, 231, 110, 0.1)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#E1EDE1';
-                      e.target.style.backgroundColor = '#FEFEFE';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Condition</label>
-                  <select
-                    className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-                    style={{ 
-                      backgroundColor: '#FEFEFE',
-                      borderColor: '#E1EDE1',
-                      color: '#2D3F2F'
-                    }}
-                    value={formData.condition}
-                    onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
-                  >
-                    <option value="Excellent">Excellent</option>
-                    <option value="Good">Good</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Any">Any</option>
-                  </select>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Type</label>
-                  <select
-                    className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-                    style={{ 
-                      backgroundColor: '#FEFEFE',
-                      borderColor: '#E1EDE1',
-                      color: '#2D3F2F'
-                    }}
-                    value={formData.type}
-                    onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                  >
-                    <option value="lost">Lost Item</option>
-                    <option value="found">Found Item</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#2D3F2F' }}>Location</label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-                    style={{ 
-                      backgroundColor: '#FEFEFE',
-                      borderColor: '#E1EDE1',
-                      color: '#2D3F2F'
-                    }}
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    placeholder="Where was it lost/found?"
-                    onFocus={(e) => {
-                      e.target.style.borderColor = '#6EE76E';
-                      e.target.style.backgroundColor = 'white';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(110, 231, 110, 0.1)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#E1EDE1';
-                      e.target.style.backgroundColor = '#FEFEFE';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  />
-                </div>
-              </div>
-            </>
-          )}
-          
-          <div className="flex gap-4 pt-6">
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex-1 py-3 bg-white border-2 rounded-xl font-medium transition-all duration-300 hover:transform hover:-translate-y-1"
-              style={{ color: '#2D3F2F', borderColor: '#E1EDE1' }}
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="flex-1 py-3 text-white rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1"
-              style={{ 
-                background: 'linear-gradient(135deg, #6EE76E 0%, #4AE54A 100%)',
-                boxShadow: '0 4px 15px rgba(110, 231, 110, 0.3)'
-              }}
-            >
-              Add {activeTab === 'marketplace' ? 'Item' : 'Report'}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-// Thread Modal Component
-const ThreadModal = ({ item, onClose, newThread, setNewThread, onAddThread }) => (
-  <div className="fixed inset-0 flex items-center justify-center p-4 z-50" style={{ background: 'rgba(45, 63, 47, 0.4)', backdropFilter: 'blur(4px)' }}>
-    <div className="max-w-3xl w-full max-h-[85vh] overflow-hidden bg-white rounded-2xl border shadow-xl" style={{ borderColor: '#E1EDE1', boxShadow: '0 20px 60px rgba(110, 231, 110, 0.15)' }}>
-      <div className="flex items-center justify-between p-8 border-b" style={{ borderColor: '#E1EDE1' }}>
-        <h2 className="text-2xl font-bold" style={{ color: '#2D3F2F', fontFamily: 'serif' }}>
-          {item.title} - Updates
-        </h2>
-        <button 
-          onClick={onClose} 
-          className="p-2 rounded-full transition-all duration-300 hover:transform hover:scale-110" 
-          style={{ color: '#6B7D6D', backgroundColor: '#E8F5E8' }}
-        >
-          <X className="h-8 w-8" />
-        </button>
-      </div>
-      
-      <div className="p-8 overflow-y-auto max-h-96">
-        <div className="space-y-4 mb-8">
-          {item.threads.map(thread => (
-            <div key={thread.id} className="rounded-xl p-6 border" style={{ backgroundColor: '#E8F5E8', borderColor: '#E1EDE1' }}>
-              <div className="flex items-center justify-between mb-3">
-                <span className="font-semibold" style={{ color: '#2D3F2F' }}>{thread.author}</span>
-                <span className="text-sm" style={{ color: '#6B7D6D' }}>{thread.timestamp}</span>
-              </div>
-              <p className="leading-relaxed" style={{ color: '#4A5D4C' }}>{thread.message}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      <div className="p-8 border-t" style={{ borderColor: '#E1EDE1' }}>
-        <div className="flex gap-4">
-          <input
-            type="text"
-            placeholder="Add an update..."
-            className="flex-1 px-4 py-3 border-2 rounded-xl font-medium transition-all duration-300 focus:outline-none"
-            style={{ 
-              backgroundColor: '#FEFEFE',
-              borderColor: '#E1EDE1',
-              color: '#2D3F2F'
-            }}
-            value={newThread}
-            onChange={(e) => setNewThread(e.target.value)}
-            onFocus={(e) => {
-              e.target.style.borderColor = '#6EE76E';
-              e.target.style.backgroundColor = 'white';
-              e.target.style.boxShadow = '0 0 0 3px rgba(110, 231, 110, 0.1)';
-            }}
-            onBlur={(e) => {
-              e.target.style.borderColor = '#E1EDE1';
-              e.target.style.backgroundColor = '#FEFEFE';
-              e.target.style.boxShadow = 'none';
-            }}
-          />
-          <button
-            onClick={onAddThread}
-            className="px-6 py-3 text-white rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1"
-            style={{ 
-              background: 'linear-gradient(135deg, #6EE76E 0%, #4AE54A 100%)',
-              boxShadow: '0 4px 15px rgba(110, 231, 110, 0.3)'
-            }}
-          >
-            Add Update
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-export default CollegeMarketplace;
