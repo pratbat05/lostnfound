@@ -4,10 +4,16 @@
   "description": "A comprehensive college marketplace and lost & found platform for students",
   "private": true,
   "dependencies": {
+    "@tsparticles/engine": "^3.0.3",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.0.3",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.0",
     "lucide-react": "^0.525.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.0",
