@@ -113,7 +113,7 @@ const LandingPage = ({ onEnterApp }) => (
               <Shield className="h-8 w-8 text-blue-600" />
             </div>
             <h3 className="font-semibold text-lg text-gray-900 mb-3">Safe & Secure</h3>
-            <p className="text-gray-600">College email verification ensures you're only dealing with fellow students</p>
+            <p className="text-gray-600">College email verification ensures you are only dealing with fellow students</p>
           </div>
           
           <div className="text-center">
@@ -587,4 +587,4 @@ const CollegeMarketplace = () => {
       seller: "Sarah M.",
       contact: "sarah.m@college.edu",
       description: "Professional grade multimeter, perfect for electronics projects. Available for lending.",
-      datePosted: "1
+      datePosted: "1 day ago",
